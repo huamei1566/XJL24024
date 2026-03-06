@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>fileMacroDialog</class>
+ <widget class="QDialog" name="fileMacroDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>522</width>
+    <height>640</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QTableWidget" name="tableWidget_renwu">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>501</width>
+     <height>471</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>50</y>
+     <width>271</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QRadioButton" name="Btn_fayi1">
+      <property name="text">
+       <string>发射机1</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QRadioButton" name="Btn_fayi2">
+      <property name="text">
+       <string>发射机2</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="Btn_save">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>530</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>保存参数</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Btn_take">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>530</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>装载与下发</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_ankong">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>260</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>配置安控参数</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Btn_newsave">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>530</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>新建</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Btn_delete">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>530</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>删除</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>735</x>
+     <y>80</y>
+     <width>97</width>
+     <height>135</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QCheckBox" name="checkBox_geshi_2">
+      <property name="text">
+       <string>配置帧格式</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkBox_sheping_2">
+      <property name="text">
+       <string>配置射频参数</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkBox_xindao_2">
+      <property name="text">
+       <string>配置信道编号</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkBox_pcm_2">
+      <property name="text">
+       <string>配置pcm</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkBox_yibu_2">
+      <property name="text">
+       <string>配置异步源</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>80</y>
+     <width>97</width>
+     <height>135</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QCheckBox" name="checkBox_geshi">
+      <property name="text">
+       <string>配置帧格式</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkBox_sheping">
+      <property name="text">
+       <string>配置射频参数</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkBox_xindao">
+      <property name="text">
+       <string>配置信道编号</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkBox_pcm">
+      <property name="text">
+       <string>配置pcm</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkBox_yibu">
+      <property name="text">
+       <string>配置异步源</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <zorder>layoutWidget</zorder>
+  <zorder>Btn_take</zorder>
+  <zorder>tableWidget_renwu</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>Btn_save</zorder>
+  <zorder>checkBox_ankong</zorder>
+  <zorder>Btn_newsave</zorder>
+  <zorder>layoutWidget_2</zorder>
+  <zorder>Btn_delete</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

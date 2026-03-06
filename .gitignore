@@ -1,0 +1,54 @@
+# Qt
+*.pro.user
+*.pro.user.*
+*.moc
+*.obj
+*.o
+*.a
+*.lib
+*.exe
+*.dll
+*.so
+*.dylib
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+object_script.*.Debug
+object_script.*.Release
+
+# Build directories
+Makefile
+Makefile.*
+build-*
+*-build-*
+qmake_args
+.qmake.stash
+.appveyor.yml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Config
+*.ini
+
+# Directories
+debug/
+release/
+qrc/
+src/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Windows reserved names
+nul
+moliqi
+moliqi18
