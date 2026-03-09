@@ -42,7 +42,6 @@ qmake_args
 debug/
 release/
 qrc/
-src/
 
 # OS
 .DS_Store
