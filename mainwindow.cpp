@@ -129,6 +129,35 @@ MainWindow::MainWindow(QWidget *parent)
                 "}"
             );
 
+
+    ui->Btn_gonglvset->setStyleSheet("QPushButton {"
+                                     "   background-color: #285C2E;"  // 主背景色（深绿）
+                                     "   border: 1px solid #4FBFC2;"   // 边框（浅青）
+                                     "   border-radius: 5px;"          // 圆角
+                                     "   color: #FFFFFF;"              // 文字颜色改为白色 🔴 关键修改处
+                                     "   padding: 4px 10px;"           // 内边距
+                                     "}"
+                                     "QPushButton:hover {"
+                                     "   background-color: #459E4F;"   // 悬停时亮青
+                                     "}"
+                                     "QPushButton:pressed {"
+                                     "   background-color: #1D4221;"   // 按下时暗青"
+                                     "}");
+
+    ui->Btn_gonglvset_2->setStyleSheet("QPushButton {"
+                                     "   background-color: #285C2E;"  // 主背景色（深绿）
+                                     "   border: 1px solid #4FBFC2;"   // 边框（浅青）
+                                     "   border-radius: 5px;"          // 圆角
+                                     "   color: #FFFFFF;"              // 文字颜色改为白色 🔴 关键修改处
+                                     "   padding: 4px 10px;"           // 内边距
+                                     "}"
+                                     "QPushButton:hover {"
+                                     "   background-color: #459E4F;"   // 悬停时亮青
+                                     "}"
+                                     "QPushButton:pressed {"
+                                     "   background-color: #1D4221;"   // 按下时暗青"
+                                     "}");
+
     // 设置表格列数和表头标签
     ui->tableWidget->setColumnCount(4); // 必须与图片中的4列对应
     QStringList headers;
@@ -295,6 +324,56 @@ MainWindow::MainWindow(QWidget *parent)
                                               "}");
 
 
+    ui->Box_zaibo->setStyleSheet(
+                "QComboBox {"
+                "   background-color: #4CAF50; /* 背景色 */"
+                "   color: white;"                // 文字颜色
+                    "   border: 2px solid #388E3C;"    // 边框
+                    "   border-radius: 4px;"           // 圆角
+
+                "}"
+                "QComboBox:hover {"
+                "   background-color: #45a049; /* 鼠标悬停时的背景色 */"
+                "}"
+                "QComboBox:pressed {"
+                "   background-color: #3d8b40; /* 按钮按下时的背景色 */"
+                "}"
+            );
+
+    ui->Box_zaibo2->setStyleSheet(
+                "QComboBox {"
+                "   background-color: #4CAF50; /* 背景色 */"
+                "   color: white;"                // 文字颜色
+                    "   border: 2px solid #388E3C;"    // 边框
+                    "   border-radius: 4px;"           // 圆角
+
+                "}"
+                "QComboBox:hover {"
+                "   background-color: #45a049; /* 鼠标悬停时的背景色 */"
+                "}"
+                "QComboBox:pressed {"
+                "   background-color: #3d8b40; /* 按钮按下时的背景色 */"
+                "}"
+            );
+
+    // 或者使用样式表控制
+    ui->Box_zaibo->view()->setStyleSheet("QAbstractItemView {"
+                                     "min-width: 100px;"
+                                     "min-height: 20px;"
+                                     "max-height: 100px;"
+                                     "color: black;"
+                                     "background-color: #388E3C;"
+                                     "}");
+    ui->Box_zaibo2->view()->setStyleSheet("QAbstractItemView {"
+                                     "min-width: 100px;"
+                                     "min-height: 20px;"
+                                     "max-height: 100px;"
+                                     "color: black;"
+                                     "background-color: #388E3C;"
+                                     "}");
+
+    
+    
     loadSettings();
     updateui1();
     updateui2();
@@ -307,6 +386,7 @@ MainWindow::MainWindow(QWidget *parent)
     initdatabackworker();
 
     setWindowTitle("模拟器监控软件");
+
 
 
 }
@@ -699,10 +779,25 @@ void MainWindow::initdaimoall(int i)
 
 void MainWindow::initGNSSfile()
 {
-   // QString time = QDateTime::currentDateTime().toUTC().toString();
-  //  file.setFileName(QString("启动%1安控记录.txt").arg(time));
-    file.setFileName(QString("启动安控记录.txt"));
-    file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text);
+    QString appDir = QCoreApplication::applicationDirPath();
+    QDir dir(appDir);
+    QString folderPath = dir.absoluteFilePath("安控记录");
+
+    // 确保文件夹存在
+    if (!dir.exists("安控记录")) {
+        if (!dir.mkpath("安控记录")) {
+            qDebug() << "无法创建目录:" << folderPath;
+            return; // 或者处理错误
+        }
+    }
+
+    QDate currentDate = QDate::currentDate();
+    file.setFileName(QString(folderPath + "/启动安控记录%1.txt").arg(currentDate.toString("yyyy-MM-dd")));
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
+    {
+        qDebug() << file.errorString();
+    }
+
 }
 
 void MainWindow::initdatabackworker()
@@ -954,6 +1049,7 @@ void MainWindow::onpeiz13(int fasheji)
     {
         setmaintable("射频参数下发回传:下发成功" , "发射机2");
     }
+
 
 }
 
@@ -2424,7 +2520,7 @@ void MainWindow::GNSSredtimeoutSignal()
 }
 
 void MainWindow::on_Btn_MachinestatusRead_clicked()
-{
+{   
 
     if(isOpenTime)
     {

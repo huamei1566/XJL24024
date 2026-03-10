@@ -790,6 +790,8 @@ void fileMacroDialog::on_Btn_take_clicked()
               owner->pingdian = fspinlv;
               owner->pinpian = tzbinpian;
               owner->tiaoz = tiao1;
+
+              owner->tiaozhikaiguan = tiaokai1;
               owner->updateui1();
 
               owner->fuzhengfangshi2 = fuzhenfanshi_2;
@@ -805,6 +807,8 @@ void fileMacroDialog::on_Btn_take_clicked()
               owner->pingdian2 = fspinlv_2;
               owner->pinpian2 = tzbinpian_2;
               owner->tiaoz2 = tiao1_2;
+
+              owner->tiaozhikaiguan2 = tiaokai1_2;
               owner->updateui2();
 
 
@@ -2743,6 +2747,16 @@ void fileMacroDialog::on_Btn_newsave_clicked()
 
 void fileMacroDialog::on_Btn_delete_clicked()
 {
+    int isdelete = QMessageBox::information(this , "提示" ,"是否删除选中的任务宏",QMessageBox::Yes | QMessageBox::No);
+
+    if(isdelete == QMessageBox::No)
+    {
+       return;
+    }
+
+
+
+
     QList<QTableWidgetItem*> selectedItems = ui->tableWidget_renwu->selectedItems();
 
     QString mingzi;

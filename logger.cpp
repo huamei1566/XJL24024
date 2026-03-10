@@ -3,12 +3,28 @@
 #include <QDateTime>
 #include <QDir>
 #include <QDebug>
+#include <QCoreApplication>
 
 Logger* Logger::m_instance = nullptr;
 
 Logger::Logger() {
+
+    QString appDir = QCoreApplication::applicationDirPath();
+    QDir dir(appDir);
+    QString folderPath = dir.absoluteFilePath("Log日志");
+
+    // 确保文件夹存在
+    if (!dir.exists("安控记录")) {
+        if (!dir.mkpath("安控记录")) {
+            qDebug() << "无法创建目录:" << folderPath;
+            return; // 或者处理错误
+        }
+    }
+
+    QDate currentDate = QDate::currentDate();
+
     // 默认日志文件，可以后续用setLogFile改变
-    setLogFile("log.txt");
+    setLogFile(folderPath + QString("/log%1.txt").arg(currentDate.toString("yyyy-MM-dd")));
 }
 
 Logger::~Logger() {
