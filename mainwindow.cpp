@@ -158,6 +158,21 @@ MainWindow::MainWindow(QWidget *parent)
                                      "   background-color: #1D4221;"   // 按下时暗青"
                                      "}");
 
+
+    ui->Btn_cunchu->setStyleSheet("QPushButton {"
+                                  "   background-color: #285C2E;"  // 主背景色（深绿）
+                                  "   border: 1px solid #4FBFC2;"   // 边框（浅青）
+                                  "   border-radius: 5px;"          // 圆角
+                                  "   color: #FFFFFF;"              // 文字颜色改为白色 🔴 关键修改处
+                                  "   padding: 4px 10px;"           // 内边距
+                                  "}"
+                                  "QPushButton:hover {"
+                                  "   background-color: #459E4F;"   // 悬停时亮青
+                                  "}"
+                                  "QPushButton:pressed {"
+                                  "   background-color: #1D4221;"   // 按下时暗青"
+                                  "}");
+
     // 设置表格列数和表头标签
     ui->tableWidget->setColumnCount(4); // 必须与图片中的4列对应
     QStringList headers;
@@ -656,7 +671,7 @@ void MainWindow::saveSettings()
             settings.setValue("gonglv", gonglv);
             settings.setValue("fuzhengchang", fuzhengchang);
             settings.setValue("zhenchang", zhenchang);
-            settings.setValue("tiaozhikaiguan", tiaozhikaiguan);
+            settings.setValue("zaibokaiguan", zaibokaiguan);
             settings.endGroup();
 
             settings.beginGroup("AdvancedSettings");
@@ -672,7 +687,7 @@ void MainWindow::saveSettings()
             settings.setValue("gonglv2", gonglv2);
             settings.setValue("fuzhengchang2", fuzhengchang2);
             settings.setValue("zhenchang2", zhenchang2);
-            settings.setValue("tiaozhikaiguan2", tiaozhikaiguan2);
+            settings.setValue("tiaozhikaiguan2", zaibokaiguan2);
             settings.endGroup();
 
 
@@ -711,7 +726,7 @@ void MainWindow::loadSettings()
             gonglv = settings.value("gonglv", "45").toString();
             fuzhengchang = settings.value("fuzhengchang", "16").toString();
             zhenchang = settings.value("zhenchang", "128").toString();
-            tiaozhikaiguan = settings.value("tiaozhikaiguan", "关").toString();
+            zaibokaiguan = settings.value("zaibokaiguan", "关").toString();
             settings.endGroup();
 
             // 加载高级设置
@@ -728,7 +743,7 @@ void MainWindow::loadSettings()
             gonglv2 = settings.value("gonglv2", "45").toString();
             fuzhengchang2 = settings.value("fuzhengchang2", "16").toString();
             zhenchang2 = settings.value("zhenchang2", "128").toString();
-            tiaozhikaiguan2 = settings.value("tiaozhikaiguan2", "关").toString();
+            zaibokaiguan2 = settings.value("tiaozhikaiguan2", "关").toString();
             settings.endGroup();
 
             ui->lineEdit_savepath->setText(settings.value("savepath", "/data").toString());
@@ -1049,7 +1064,6 @@ void MainWindow::onpeiz13(int fasheji)
     {
         setmaintable("射频参数下发回传:下发成功" , "发射机2");
     }
-
 
 }
 
@@ -2238,6 +2252,7 @@ void MainWindow::on_Btn_wenjianselect2_clicked()
 void MainWindow::on_Btn_file_clicked()
 {
     m_fileMacroDialog = new fileMacroDialog(this);
+    m_fileMacroDialog->setWindowModality(Qt::WindowModal);
     m_fileMacroDialog->setOwner(this);
     m_fileMacroDialog->setFixedSize(520 ,640);
 
@@ -2416,11 +2431,11 @@ void MainWindow::onupdateK(quint8 value, quint16 Power_amplifier1 , quint16 Powe
     double Power_amplifier1double =Power_amplifier1 / 10.0;
     double Power_amplifier2double =Power_amplifier2 / 10.0;
 
-    if(Power_amplifier1double > 1.55 && tiaozhikaiguan == "开")
+    if(Power_amplifier1double > 1.55 && zaibokaiguan == "开")
     {
         ui->label_pixmapjiqi->setPixmap(result2);
     }
-    else if(Power_amplifier1double > 1.4 && ui->lineEdit_gonglv->text().toInt() <= 8 && ui->lineEdit_gonglv->text().toInt() >= 6 && tiaozhikaiguan == "开")
+    else if(Power_amplifier1double > 1.4 && ui->lineEdit_gonglv->text().toInt() <= 8 && ui->lineEdit_gonglv->text().toInt() >= 6 && zaibokaiguan == "开")
     {
         ui->label_pixmapjiqi->setPixmap(result2);
     }
@@ -2431,11 +2446,11 @@ void MainWindow::onupdateK(quint8 value, quint16 Power_amplifier1 , quint16 Powe
 
 
 
-    if(Power_amplifier2double > 1.55 && tiaozhikaiguan2 == "开")
+    if(Power_amplifier2double > 1.55 && zaibokaiguan2 == "开")
     {
         ui->label_pixmapjiqi_2->setPixmap(result2);
     }
-    else if(Power_amplifier2double > 1.4 && ui->lineEdit_gonglv_2->text().toInt() <= 8 && ui->lineEdit_gonglv->text().toInt() >= 6  && tiaozhikaiguan2 == "开")
+    else if(Power_amplifier2double > 1.4 && ui->lineEdit_gonglv_2->text().toInt() <= 8 && ui->lineEdit_gonglv->text().toInt() >= 6  && zaibokaiguan2 == "开")
     {
         ui->label_pixmapjiqi_2->setPixmap(result2);
     }
@@ -2684,6 +2699,27 @@ void MainWindow::on_Btn_gonglvset_clicked()
         QMessageBox::information(this , "提示" , "输出功率较大，请确认天线已连接");
     }
 
+    gonglvandzaibo_1();
+    QTimer::singleShot(500, this, &MainWindow::gonglvandzaibo_1);
+
+
+}
+
+void MainWindow::on_Btn_gonglvset_2_clicked()
+{
+    if(ui->lineEdit_miangonglv_2->text().toInt() > 10 &&  ui->Box_zaibo2->currentText() == "载波:开")
+    {
+        QMessageBox::information(this , "提示" , "输出功率较大，请确认天线已连接");
+    }
+
+
+    gonglvandzaibo_2();
+    QTimer::singleShot(500, this, &MainWindow::gonglvandzaibo_2);
+
+}
+
+void MainWindow::gonglvandzaibo_1()
+{
 
     QSettings settings("settings.ini", QSettings::IniFormat);
 
@@ -2718,6 +2754,7 @@ void MainWindow::on_Btn_gonglvset_clicked()
     QString zhenchang = settings.value("zhenchang", "128").toString();
     QString fspinlv = settings.value("fspinlv", "2400").toString();
     settings.endGroup();
+
 
     QByteArray array;
 
@@ -2852,18 +2889,22 @@ void MainWindow::on_Btn_gonglvset_clicked()
     settings.endGroup();
 
     gonglv = ui->lineEdit_miangonglv->text();
+    if(ui->Box_zaibo->currentText() == "载波:开")
+    {
+        zaibokaiguan = "开";
+    }
+    else
+    {
+        zaibokaiguan = "关";
+    }
+
 
     ui->lineEdit_gonglv->setText(ui->lineEdit_miangonglv->text());
 
 }
 
-void MainWindow::on_Btn_gonglvset_2_clicked()
+void MainWindow::gonglvandzaibo_2()
 {
-    if(ui->lineEdit_miangonglv_2->text().toInt() > 10 &&  ui->Box_zaibo2->currentText() == "载波:开")
-    {
-        QMessageBox::information(this , "提示" , "输出功率较大，请确认天线已连接");
-    }
-
     QSettings settings("settings.ini", QSettings::IniFormat);
     // 调制组
     settings.beginGroup("Modulation2");
@@ -2895,8 +2936,6 @@ void MainWindow::on_Btn_gonglvset_2_clicked()
     QString zhenchang = settings.value("zhenchang2", "128").toString();
     QString fspinlv = settings.value("fspinlv2", "2400").toString();
     settings.endGroup();
-
-
 
 
     QByteArray array;
@@ -3022,8 +3061,8 @@ void MainWindow::on_Btn_gonglvset_2_clicked()
 
     udpManager->sendDatagram(array);
 
-    Logger::info("发射机1:配置射频参数下发");
-    setmaintable("发射机1:配置射频参数下发", "上位机");
+    Logger::info("发射机2:配置射频参数下发");
+    setmaintable("发射机2:配置射频参数下发", "上位机");
     array.clear();
 
     // 功率控制组
@@ -3033,6 +3072,16 @@ void MainWindow::on_Btn_gonglvset_2_clicked()
 
 
     gonglv2 = ui->lineEdit_miangonglv_2->text();
+    if(ui->Box_zaibo2->currentText() == "载波:开")
+    {
+        zaibokaiguan2 = "开";
+    }
+    else
+    {
+        zaibokaiguan2 = "关";
+    }
+
+
 
     ui->lineEdit_gonglv_2->setText(ui->lineEdit_miangonglv_2->text());
 

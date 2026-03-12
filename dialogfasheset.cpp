@@ -291,12 +291,6 @@ Dialogfasheset::~Dialogfasheset()
 void Dialogfasheset::on_Btn_peiz_clicked()
 {
 
-//    if(ui->lineEdit_fsygonglvkongz->text().toInt() < 6)
-//    {
-//        QMessageBox::information(this , "错误" , "发射源功率控制小于6 , 错误");
-//        return;
-//    }
-
     if(ui->lineEdit_fspinlv->text().toDouble() < 2200)
     {
         QMessageBox::information(this , "错误" , "发射频率不在合法工作范围里 , 错误");
@@ -307,7 +301,6 @@ void Dialogfasheset::on_Btn_peiz_clicked()
     {
         QMessageBox::information(this , "提示" , "输出功率较大，请确认天线已连接");
     }
-
 
 
     owner->m_PPACKET_HEADER = new PACKET_HEADER;
@@ -333,8 +326,7 @@ void Dialogfasheset::on_Btn_peiz_clicked()
           owner->bianmawz = ui->comboBox_bianmaweizhi->currentText();
           owner->fuzhengchang = ui->lineEdit_fuzhenchangdu->text();
           owner->zhenchang = ui->lineEdit_zhenchang->text();
-          owner->tiaozhikaiguan = ui->comboBox_zai1->currentText();
-
+          owner->zaibokaiguan = ui->comboBox_zai1->currentText();
 
           owner->updateui1();
 
@@ -351,7 +343,7 @@ void Dialogfasheset::on_Btn_peiz_clicked()
           owner->bianmawz2 = ui->comboBox_bianmaweizhi->currentText();
           owner->fuzhengchang2 = ui->lineEdit_fuzhenchangdu->text();
           owner->zhenchang2 = ui->lineEdit_zhenchang->text();
-          owner->tiaozhikaiguan2 = ui->comboBox_zai1->currentText();
+          owner->zaibokaiguan2 = ui->comboBox_zai1->currentText();
           owner->updateui2();
     }
 

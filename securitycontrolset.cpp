@@ -21,6 +21,13 @@ SecurityControlset::SecurityControlset(QWidget *parent) :
     ui->lineEdit_DPSK_FM_qiandaoma->setReadOnly(true);
     ui->lineEdit_DPSK_FM_tongbu->setReadOnly(true);
 
+    ui->lineEdit_DPSK_FM_tongbu->hide();
+    ui->lineEdit_DPSK_FM_qiandaoma->hide();
+    ui->label_49->hide();
+    ui->label_45->hide();
+    ui->label_46->hide();
+    ui->label_50->hide();
+
     ui->label_45->setStyleSheet("color: #808080;");
     ui->label_49->setStyleSheet("color: #808080;");
 

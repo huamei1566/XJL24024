@@ -791,7 +791,7 @@ void fileMacroDialog::on_Btn_take_clicked()
               owner->pinpian = tzbinpian;
               owner->tiaoz = tiao1;
 
-              owner->tiaozhikaiguan = tiaokai1;
+              owner->zaibokaiguan = tiaokai1;
               owner->updateui1();
 
               owner->fuzhengfangshi2 = fuzhenfanshi_2;
@@ -801,14 +801,14 @@ void fileMacroDialog::on_Btn_take_clicked()
               owner->bianmawz2 = Bianmaweizhi_2;
               owner->fuzhengchang2 = fuzhenchangdu_2;
               owner->zhenchang2 = zhenchang_2;
-              owner->tiaozhikaiguan2 = zai1;
+              owner->zaibokaiguan2 = zai1;
               owner->gonglv2 = fsygonglvkongz_2;
 
               owner->pingdian2 = fspinlv_2;
               owner->pinpian2 = tzbinpian_2;
               owner->tiaoz2 = tiao1_2;
 
-              owner->tiaozhikaiguan2 = tiaokai1_2;
+              owner->zaibokaiguan2 = tiaokai1_2;
               owner->updateui2();
 
 
@@ -2207,8 +2207,8 @@ void fileMacroDialog::on_Btn_take_clicked()
 
             settings2.endGroup();
 
-            Logger::info("发射机1:配置pcm下发");
-            owner->setmaintable("发射机1:配置pcm下发" , "上位机");
+            Logger::info("发射机2:配置pcm下发");
+            owner->setmaintable("发射机2:配置pcm下发" , "上位机");
         }
 
 
@@ -2305,8 +2305,8 @@ void fileMacroDialog::on_Btn_take_clicked()
             owner->udpManager->sendDatagram(array);
 
 
-               Logger::info("发射机1:配置异步源下发");
-               owner->setmaintable("发射机1:配置异步源下发" , "上位机");
+               Logger::info("发射机2:配置异步源下发");
+               owner->setmaintable("发射机2:配置异步源下发" , "上位机");
 
                settings2.endGroup();
 

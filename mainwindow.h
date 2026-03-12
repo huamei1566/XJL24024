@@ -134,8 +134,8 @@ public:
 
     int fo = 100000000;
     int fo_2 = 100000000;
-    QString fuzhengfangshi;
-    QString zhengmazu;
+    QString fuzhengfangshi; //副帧方式
+    QString zhengmazu;  //
     QString malv;
     QString maxing;
     QString bianmawz;
@@ -147,6 +147,7 @@ public:
     QString fuzhengchang;
     QString zhenchang;
     QString tiaozhikaiguan;
+    QString zaibokaiguan;
     QString fuzhengfangshi2;
     QString zhengmazu2;
     QString malv2;
@@ -160,6 +161,7 @@ public:
     QString fuzhengchang2;
     QString zhenchang2;
     QString tiaozhikaiguan2;
+    QString zaibokaiguan2;
 
     //系统状态数据回传
     quint32 m_tx1_freq_point;      // 频点 (4B)
@@ -311,6 +313,10 @@ private slots:
     void on_Btn_gonglvset_clicked();
 
     void on_Btn_gonglvset_2_clicked();
+
+
+    void gonglvandzaibo_1();
+    void gonglvandzaibo_2();
 
 public:
     void updateui1();
